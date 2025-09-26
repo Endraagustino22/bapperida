@@ -13,7 +13,7 @@ class PesertaMagang extends Model
 
     protected $fillable = [
         'user_id', 'nim', 'universitas', 'jurusan', 'no_hp', 
-        'alamat', 'cv_file', 'surat_pengantar', 'foto', 'status'
+        'alamat', 'cv_file', 'surat_pengantar', 'foto', 'status', 'nama'
     ];
 
     public function user()
