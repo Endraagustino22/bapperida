@@ -14,7 +14,7 @@ class AuthController extends Controller
      */
     public function showLoginForm()
     {
-        return view('view-magang.auth.login');
+        return view('auth.login'); // resources/views/auth/login.blade.php
     }
 
     /**
@@ -32,10 +32,10 @@ class AuthController extends Controller
 
             // Redirect sesuai role
             if (Auth::user()->role === 'admin') {
-                return redirect()->intended('/admin/dashboard')->with('success', 'Selamat datang Admin!');
-            } else {
-                return redirect()->intended('/peserta/dashboard')->with('success', 'Login berhasil!');
+                return redirect()->route('admin.dashboard')->with('success', 'Selamat datang Admin!');
             }
+            // Peserta login langsung ke home
+            return redirect()->route('home')->with('success', 'Login berhasil!');
         }
 
         return back()->withErrors([
@@ -48,7 +48,7 @@ class AuthController extends Controller
      */
     public function showRegisterForm()
     {
-        return view('view-magang.auth.register');
+        return view('auth.register'); // resources/views/auth/register.blade.php
     }
 
     /**
@@ -71,7 +71,8 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect('/peserta/dashboard')->with('success', 'Registrasi berhasil, selamat datang!');
+        // Setelah register, langsung ke home
+        return redirect()->route('home')->with('success', 'Registrasi berhasil, selamat datang!');
     }
 
     /**
@@ -84,6 +85,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login')->with('success', 'Anda sudah logout.');
+        return redirect()->route('home')->with('success', 'Anda sudah logout.');
     }
 }

@@ -4,17 +4,29 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\PesertaMagang;
+use App\Models\Penelitian;
+use App\Models\Kkn;
 use App\Models\User;
 
 class AdminDashboardController extends Controller
 {
     public function index()
     {
-        $totalPeserta = PesertaMagang::count();
-        $diterima = PesertaMagang::where('status', 'Diterima')->count();
-        $ditolak = PesertaMagang::where('status', 'Ditolak')->count();
-        $menunggu = PesertaMagang::where('status', 'Menunggu')->count();
+        $totalMagang = PesertaMagang::count();
+        $totalPenelitian = Penelitian::count();
+        // $totalKkn = Kkn::count();
+        $totalUsers = User::count();
 
-        return view('view-magang.admin.dashboard', compact('totalPeserta', 'diterima', 'ditolak', 'menunggu'));
+        $latestMagang = PesertaMagang::latest()->take(3)->get();
+        $latestPenelitian = Penelitian::latest()->take(3)->get();
+
+        return view('admin.dashboard', compact(
+            'totalMagang',
+            'totalPenelitian',
+            // 'totalKkn',
+            'totalUsers',
+            'latestMagang',
+            'latestPenelitian'
+        ));
     }
 }
