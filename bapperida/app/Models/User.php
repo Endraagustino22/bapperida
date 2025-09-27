@@ -34,10 +34,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    // public function pesertaMagang()
-    // {
-    //     return $this->hasOne(PesertaMagang::class);
-    // }
+    public function pesertaMagang()
+    {
+        return $this->hasOne(PesertaMagang::class);
+    }
 
     /**
      * Get the attributes that should be cast.
