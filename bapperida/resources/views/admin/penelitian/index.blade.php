@@ -22,10 +22,10 @@
                 <thead class="table-dark">
                     <tr>
                         <th>#</th>
-                        <th>Judul Penelitian</th>
                         <th>Nama Peneliti</th>
-                        <th>Universitas</th>
-                        <th>Jurusan</th>
+                        <th>Judul Penelitian</th>
+                        <th>Instansi</th>
+                        <th>Tujuan Penelitian</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -34,17 +34,17 @@
                     @forelse ($penelitians as $index => $penelitian)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $penelitian->judul }}</td>
-                            <td>{{ $penelitian->nama_peneliti }}</td>
-                            <td>{{ $penelitian->universitas }}</td>
-                            <td>{{ $penelitian->jurusan }}</td>
+                            <td>{{ $penelitian->nama }}</td>
+                            <td>{{ $penelitian->judul_penelitian }}</td>
+                            <td>{{ $penelitian->instansi }}</td>
+                            <td>{{ $penelitian->tujuan_penelitian }}</td>
                             <td>
                                 <span
                                     class="badge 
-                        @if ($penelitian->status == 'menunggu') bg-warning 
-                        @elseif($penelitian->status == 'diterima') bg-success 
+                        @if ($penelitian->status == 'pending') bg-warning 
+                        @elseif($penelitian->status == 'disetujui') bg-success 
                         @else bg-danger @endif">
-                                    {{ ucfirst($penelitian->status ?? 'Belum diverifikasi') }}
+                                    {{ ucfirst($penelitian->status ?? 'ditolak') }}
                                 </span>
                             </td>
                             <td>

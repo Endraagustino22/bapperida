@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Penelitian;
 use Illuminate\Support\Facades\Auth;
 
-
 class PenelitianController extends Controller
 {
     public function index()
@@ -14,6 +13,7 @@ class PenelitianController extends Controller
         $penelitians = Penelitian::where('user_id', Auth::id())->get();
         return view('penelitian.index', compact('penelitians'));
     }
+
     public function create()
     {
         return view('penelitian.create');
@@ -22,10 +22,10 @@ class PenelitianController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul_penelitian' => 'required',
-            'instansi' => 'required',
-            'waktu_mulai' => 'required|date',
-            'waktu_selesai' => 'required|date|after:waktu_mulai',
+            'nama' => 'required|string|max:255',
+            'judul_penelitian' => 'required|string|max:255',
+            'instansi' => 'required|string|max:255',
+            'tujuan_penelitian' => 'nullable|string',
             'file_proposal' => 'nullable|mimes:pdf|max:2048',
         ]);
 
@@ -36,22 +36,17 @@ class PenelitianController extends Controller
 
         Penelitian::create([
             'user_id' => Auth::id(),
-
+            'nama' => $request->nama,
             'judul_penelitian' => $request->judul_penelitian,
             'instansi' => $request->instansi,
             'tujuan_penelitian' => $request->tujuan_penelitian,
-            'waktu_mulai' => $request->waktu_mulai,
-            'waktu_selesai' => $request->waktu_selesai,
             'file_proposal' => $file,
+            'status' => 'pending',
         ]);
 
         return redirect()->route('penelitian.index')->with('success', 'Pengajuan penelitian berhasil diajukan');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $penelitian = Penelitian::where('user_id', Auth::id())->findOrFail($id);
@@ -69,14 +64,14 @@ class PenelitianController extends Controller
         $penelitian = Penelitian::where('user_id', Auth::id())->findOrFail($id);
 
         $request->validate([
-            'judul_penelitian' => 'required',
-            'instansi' => 'required',
-            'waktu_mulai' => 'required|date',
-            'waktu_selesai' => 'required|date|after:waktu_mulai',
+            'nama' => 'required|string|max:255',
+            'judul_penelitian' => 'required|string|max:255',
+            'instansi' => 'required|string|max:255',
+            'tujuan_penelitian' => 'nullable|string',
             'file_proposal' => 'nullable|mimes:pdf|max:2048',
         ]);
 
-        $data = $request->only(['judul_penelitian', 'instansi', 'tujuan_penelitian', 'waktu_mulai', 'waktu_selesai']);
+        $data = $request->only(['nama', 'judul_penelitian', 'instansi', 'tujuan_penelitian']);
 
         if ($request->hasFile('file_proposal')) {
             $data['file_proposal'] = $request->file('file_proposal')->store('proposal', 'public');

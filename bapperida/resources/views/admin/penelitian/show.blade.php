@@ -9,16 +9,16 @@
         <div class="card shadow-sm">
             <div class="card-body">
                 <div class="mb-3">
-                    <strong>Judul Penelitian:</strong> {{ $penelitian->judul }}
+                    <strong>Nama Peneliti:</strong> {{ $penelitian->nama }}
+                    <div class="mb-3">
+                        <strong>Judul Penelitian:</strong> {{ $penelitian->judul_penelitian }}
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <strong>Nama Peneliti:</strong> {{ $penelitian->nama_peneliti }}
+                    <strong>Instansi:</strong> {{ $penelitian->instansi }}
                 </div>
                 <div class="mb-3">
-                    <strong>Universitas:</strong> {{ $penelitian->universitas }}
-                </div>
-                <div class="mb-3">
-                    <strong>Jurusan:</strong> {{ $penelitian->jurusan }}
+                    <strong>Tujuan:</strong> {{ $penelitian->tujuan_penelitian }}
                 </div>
                 <div class="mb-3">
                     <strong>Status:</strong> {{ ucfirst($penelitian->status) }}

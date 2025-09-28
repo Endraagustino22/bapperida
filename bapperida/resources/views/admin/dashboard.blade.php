@@ -68,7 +68,7 @@
                         @forelse ($latestMagang as $magang)
                             <li class="list-group-item">
                                 {{ $magang->nama }} - {{ $magang->universitas }} <span
-                                    class="badge bg-info float-end">{{ ucfirst($magang->status ?? 'Menunggu') }}</span>
+                                    class="badge bg-info float-end">{{ ucfirst($magang->status ?? 'pending') }}</span>
                             </li>
                         @empty
                             <li class="list-group-item text-center text-muted">Belum ada pendaftar</li>
@@ -87,7 +87,7 @@
                             <li class="list-group-item">
                                 {{ $penelitian->judul }} - {{ $penelitian->user->name ?? '-' }}
                                 <span
-                                    class="badge bg-info float-end">{{ ucfirst($penelitian->status ?? 'Menunggu') }}</span>
+                                    class="badge bg-info float-end">{{ ucfirst($penelitian->status ?? 'pending') }}</span>
                             </li>
                         @empty
                             <li class="list-group-item text-center text-muted">Belum ada pendaftar</li>

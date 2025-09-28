@@ -22,13 +22,29 @@ class AdminPenelitianController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'dosen_pembimbing' => 'nullable|string|max:255',
-            'tahun' => 'nullable|integer',
+            'nama' => 'required|string|max:255',
+            'judul_penelitian' => 'required|string|max:255',
+            'instansi' => 'required|string|max:255',
+            'tujuan_penelitian' => 'nullable|string',
+            'file_proposal' => 'nullable|mimes:pdf|max:2048',
+            'status' => 'required|in:pending,disetujui,ditolak',
         ]);
 
-        Penelitian::create($request->all());
+        $file = null;
+        if ($request->hasFile('file_proposal')) {
+            $file = $request->file('file_proposal')->store('proposal', 'public');
+        }
+
+        Penelitian::create([
+            'user_id' => $request->user_id ?? null, // bisa kosong kalau admin yg buat
+            'nama' => $request->nama,
+            'judul_penelitian' => $request->judul_penelitian,
+            'instansi' => $request->instansi,
+            'tujuan_penelitian' => $request->tujuan_penelitian,
+            'file_proposal' => $file,
+            'status' => $request->status,
+        ]);
+
         return redirect()->route('admin.penelitian.index')->with('success', 'Data penelitian berhasil ditambahkan.');
     }
 
@@ -49,13 +65,22 @@ class AdminPenelitianController extends Controller
         $penelitian = Penelitian::findOrFail($id);
 
         $request->validate([
-            'judul' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'dosen_pembimbing' => 'nullable|string|max:255',
-            'tahun' => 'nullable|integer',
+            'nama' => 'required|string|max:255',
+            'judul_penelitian' => 'required|string|max:255',
+            'instansi' => 'required|string|max:255',
+            'tujuan_penelitian' => 'nullable|string',
+            'file_proposal' => 'nullable|mimes:pdf|max:2048',
+            'status' => 'required|in:pending,disetujui,ditolak',
         ]);
 
-        $penelitian->update($request->all());
+        $data = $request->only(['nama', 'judul_penelitian', 'instansi', 'tujuan_penelitian', 'status']);
+
+        if ($request->hasFile('file_proposal')) {
+            $data['file_proposal'] = $request->file('file_proposal')->store('proposal', 'public');
+        }
+
+        $penelitian->update($data);
+
         return redirect()->route('admin.penelitian.index')->with('success', 'Data penelitian berhasil diperbarui.');
     }
 

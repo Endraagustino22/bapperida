@@ -15,10 +15,11 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>Nama</th>
                     <th>Judul</th>
                     <th>Instansi</th>
-                    <th>Waktu</th>
                     <th>Status</th>
+                    <th>Tujuan</th>
                     <th>Proposal</th>
                     <th>Aksi</th>
                 </tr>
@@ -26,9 +27,10 @@
             <tbody>
                 @forelse($penelitians as $p)
                     <tr>
+                        <td>{{ $p->nama }}</td>
                         <td>{{ $p->judul_penelitian }}</td>
                         <td>{{ $p->instansi }}</td>
-                        <td>{{ $p->waktu_mulai }} s/d {{ $p->waktu_selesai }}</td>
+                        <td>{{ $p->tujuan_penelitian }}</td>
                         <td>
                             @if ($p->status == 'pending')
                                 <span class="badge bg-warning">Menunggu</span>

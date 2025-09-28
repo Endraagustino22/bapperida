@@ -9,9 +9,13 @@
             @method('PUT')
 
             <div class="mb-3">
+                <label class="form-label">Nama</label>
+                <input type="text" name="nama" class="form-control" value="{{ $penelitian->nama }}" required>
+            </div>
+            <div class="mb-3">
                 <label class="form-label">Judul Penelitian</label>
-                <input type="text" name="judul_penelitian" class="form-control" value="{{ $penelitian->judul_penelitian }}"
-                    required>
+                <input type="text" name="judul_penelitian" class="form-control"
+                    value="{{ $penelitian->judul_penelitian }}" required>
             </div>
 
             <div class="mb-3">
@@ -22,19 +26,6 @@
             <div class="mb-3">
                 <label class="form-label">Tujuan Penelitian</label>
                 <textarea name="tujuan_penelitian" class="form-control">{{ $penelitian->tujuan_penelitian }}</textarea>
-            </div>
-
-            <div class="row">
-                <div class="col mb-3">
-                    <label class="form-label">Waktu Mulai</label>
-                    <input type="date" name="waktu_mulai" class="form-control" value="{{ $penelitian->waktu_mulai }}"
-                        required>
-                </div>
-                <div class="col mb-3">
-                    <label class="form-label">Waktu Selesai</label>
-                    <input type="date" name="waktu_selesai" class="form-control" value="{{ $penelitian->waktu_selesai }}"
-                        required>
-                </div>
             </div>
 
             <div class="mb-3">

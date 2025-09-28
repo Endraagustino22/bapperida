@@ -14,11 +14,10 @@ return new class extends Migration
         Schema::create('penelitians', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id'); // relasi ke user yg daftar
+            $table->string('nama'); // kolom baru
             $table->string('judul_penelitian');
             $table->string('instansi');
             $table->text('tujuan_penelitian')->nullable();
-            $table->date('waktu_mulai');
-            $table->date('waktu_selesai');
             $table->string('file_proposal')->nullable();
             $table->enum('status', ['pending', 'disetujui', 'ditolak'])->default('pending');
             $table->timestamps();

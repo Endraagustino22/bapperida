@@ -6,10 +6,10 @@
 
         <div class="card">
             <div class="card-body">
+                <p><strong>Nama:</strong> {{ $penelitian->nama }}</p>
                 <p><strong>Judul:</strong> {{ $penelitian->judul_penelitian }}</p>
                 <p><strong>Instansi:</strong> {{ $penelitian->instansi }}</p>
                 <p><strong>Tujuan:</strong> {{ $penelitian->tujuan_penelitian }}</p>
-                <p><strong>Waktu:</strong> {{ $penelitian->waktu_mulai }} s/d {{ $penelitian->waktu_selesai }}</p>
                 <p><strong>Status:</strong>
                     @if ($penelitian->status == 'pending')
                         <span class="badge bg-warning">Menunggu</span>
