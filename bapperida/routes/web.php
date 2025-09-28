@@ -46,10 +46,6 @@ Route::middleware(['auth', 'role:peserta'])->group(function () {
     Route::put('/magang/{id}', [PesertaMagangController::class, 'update'])->name('magang.update');
     Route::get('/magang/status', [PesertaMagangController::class, 'status'])->name('magang.status');
 
-    // // Pengumuman
-    // Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
-    // Route::get('/pengumuman/{id}', [PengumumanController::class, 'show'])->name('pengumuman.show');
-
     // Penelitian
     Route::resource('penelitian', PenelitianController::class);
 });
