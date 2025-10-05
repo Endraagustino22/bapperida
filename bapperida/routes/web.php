@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PesertaMagangController;
 use App\Http\Controllers\PenelitianController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminMagangController;
 use App\Http\Controllers\Admin\AdminPenelitianController;
-use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminPengumumanController;
 use App\Http\Controllers\Admin\AdminKknController;
 
@@ -61,6 +61,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('magang', AdminMagangController::class);
     Route::resource('penelitian', AdminPenelitianController::class);
     Route::resource('kkn', AdminKknController::class);
-    Route::resource('users', AdminUserController::class);
     Route::resource('pengumuman', AdminPengumumanController::class);
+    Route::resource('users', UserController::class);
 });
