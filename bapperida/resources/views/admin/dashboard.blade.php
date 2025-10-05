@@ -4,93 +4,109 @@
 
 @section('content')
     <div class="container py-5">
-        <h1 class="mb-4">Dashboard Admin</h1>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold text-primary mb-0">Dashboard Admin</h2>
+            <span class="text-muted small">Selamat datang di panel administrasi</span>
+        </div>
 
         {{-- Flash message --}}
         @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
+            <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
         @endif
 
-        <div class="row g-3">
-            <!-- Card Magang -->
-            <div class="col-md-3">
-                <div class="card text-bg-primary h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Data Magang</h5>
-                        <p class="card-text">Total Pendaftar: <strong>{{ $totalMagang }}</strong></p>
-                        <a href="{{ route('admin.magang.index') }}" class="btn btn-light btn-sm">Lihat Data</a>
+        {{-- Statistik singkat --}}
+        <div class="row g-4 mb-5">
+            <div class="col-md-4 col-lg-3">
+                <div class="card border-0 shadow-sm h-100 rounded-4">
+                    <div class="card-body text-center py-4">
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width:60px; height:60px;">
+                            <i class="bi bi-briefcase-fill fs-4"></i>
+                        </div>
+                        <h6 class="fw-semibold mb-1">Data Magang</h6>
+                        <p class="text-muted small mb-2">Total Pendaftar</p>
+                        <h4 class="fw-bold">{{ $totalMagang }}</h4>
+                        <a href="{{ route('admin.magang.index') }}" class="btn btn-outline-primary btn-sm rounded-pill mt-2">Lihat Data</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Card Penelitian -->
-            <div class="col-md-3">
-                <div class="card text-bg-success h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Data Penelitian</h5>
-                        <p class="card-text">Total Pendaftar: <strong>{{ $totalPenelitian }}</strong></p>
-                        <a href="{{ route('admin.penelitian.index') }}" class="btn btn-light btn-sm">Lihat Data</a>
+            <div class="col-md-4 col-lg-3">
+                <div class="card border-0 shadow-sm h-100 rounded-4">
+                    <div class="card-body text-center py-4">
+                        <div class="bg-success bg-opacity-10 text-success rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width:60px; height:60px;">
+                            <i class="bi bi-journal-text fs-4"></i>
+                        </div>
+                        <h6 class="fw-semibold mb-1">Data Penelitian</h6>
+                        <p class="text-muted small mb-2">Total Pendaftar</p>
+                        <h4 class="fw-bold">{{ $totalPenelitian }}</h4>
+                        <a href="{{ route('admin.penelitian.index') }}" class="btn btn-outline-success btn-sm rounded-pill mt-2">Lihat Data</a>
                     </div>
                 </div>
             </div>
 
-            {{-- <!-- Card KKN -->
-            <div class="col-md-3">
-                <div class="card text-bg-warning h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Data KKN</h5>
-                        <p class="card-text">Total Pendaftar: <strong>{{ $totalKkn }}</strong></p>
-                        <a href="{{ route('admin.kkn.index') }}" class="btn btn-light btn-sm">Lihat Data</a>
-                    </div>
-                </div>
-            </div> --}}
-
-            <!-- Card User -->
-            <div class="col-md-3">
-                <div class="card text-bg-dark h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Manajemen User</h5>
-                        <p class="card-text">Total Users: <strong>{{ $totalUsers }}</strong></p>
-                        <a href="{{ route('admin.users.index') }}" class="btn btn-light btn-sm">Kelola User</a>
+            <div class="col-md-4 col-lg-3">
+                <div class="card border-0 shadow-sm h-100 rounded-4">
+                    <div class="card-body text-center py-4">
+                        <div class="bg-dark bg-opacity-10 text-dark rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width:60px; height:60px;">
+                            <i class="bi bi-people-fill fs-4"></i>
+                        </div>
+                        <h6 class="fw-semibold mb-1">Manajemen User</h6>
+                        <p class="text-muted small mb-2">Total Pengguna</p>
+                        <h4 class="fw-bold">{{ $totalUsers }}</h4>
+                        <a href="{{ route('admin.users.index') }}" class="btn btn-outline-dark btn-sm rounded-pill mt-2">Kelola User</a>
                     </div>
                 </div>
             </div>
         </div>
 
         {{-- Ringkasan terbaru --}}
-        <div class="row mt-5">
+        <div class="row g-4">
             <div class="col-md-6">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-primary text-white">
-                        <h6 class="mb-0">Pendaftar Magang Terbaru</h6>
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-header bg-transparent border-0 d-flex align-items-center justify-content-between">
+                        <h6 class="fw-semibold text-primary mb-0">
+                            <i class="bi bi-people me-2"></i>Pendaftar Magang Terbaru
+                        </h6>
+                        <span class="badge bg-primary bg-opacity-10 text-primary">Terbaru</span>
                     </div>
                     <ul class="list-group list-group-flush">
                         @forelse ($latestMagang as $magang)
-                            <li class="list-group-item">
-                                {{ $magang->nama }} - {{ $magang->universitas }} <span
-                                    class="badge bg-info float-end">{{ ucfirst($magang->status ?? 'pending') }}</span>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="fw-semibold">{{ $magang->nama }}</span>
+                                    <small class="d-block text-muted">{{ $magang->universitas }}</small>
+                                </div>
+                                <span class="badge bg-info text-dark">{{ ucfirst($magang->status ?? 'pending') }}</span>
                             </li>
                         @empty
-                            <li class="list-group-item text-center text-muted">Belum ada pendaftar</li>
+                            <li class="list-group-item text-center text-muted py-3">Belum ada pendaftar</li>
                         @endforelse
                     </ul>
                 </div>
             </div>
 
             <div class="col-md-6">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-success text-white">
-                        <h6 class="mb-0">Pendaftar Penelitian Terbaru</h6>
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-header bg-transparent border-0 d-flex align-items-center justify-content-between">
+                        <h6 class="fw-semibold text-success mb-0">
+                            <i class="bi bi-file-earmark-text me-2"></i>Pendaftar Penelitian Terbaru
+                        </h6>
+                        <span class="badge bg-success bg-opacity-10 text-success">Terbaru</span>
                     </div>
                     <ul class="list-group list-group-flush">
                         @forelse ($latestPenelitian as $penelitian)
-                            <li class="list-group-item">
-                                {{ $penelitian->judul }} - {{ $penelitian->user->name ?? '-' }}
-                                <span
-                                    class="badge bg-info float-end">{{ ucfirst($penelitian->status ?? 'pending') }}</span>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="fw-semibold">{{ $penelitian->judul }}</span>
+                                    <small class="d-block text-muted">{{ $penelitian->user->name ?? '-' }}</small>
+                                </div>
+                                <span class="badge bg-info text-dark">{{ ucfirst($penelitian->status ?? 'pending') }}</span>
                             </li>
                         @empty
-                            <li class="list-group-item text-center text-muted">Belum ada pendaftar</li>
+                            <li class="list-group-item text-center text-muted py-3">Belum ada pendaftar</li>
                         @endforelse
                     </ul>
                 </div>
