@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PesertaMagangController;
 use App\Http\Controllers\PenelitianController;
+use App\Http\Controllers\PesertaKknController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminMagangController;
 use App\Http\Controllers\Admin\AdminPenelitianController;
@@ -48,6 +49,9 @@ Route::middleware(['auth', 'role:peserta'])->group(function () {
 
     // Penelitian
     Route::resource('penelitian', PenelitianController::class);
+
+    //kkn
+    Route::resource('kkn', PesertaKknController::class);
 });
 
 

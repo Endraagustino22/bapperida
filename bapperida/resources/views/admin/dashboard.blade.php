@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            {{-- <!-- Card KKN -->
+            <!-- Card KKN -->
             <div class="col-md-3">
                 <div class="card text-bg-warning h-100 shadow-sm">
                     <div class="card-body text-center">
@@ -43,7 +43,7 @@
                         <a href="{{ route('admin.kkn.index') }}" class="btn btn-light btn-sm">Lihat Data</a>
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
             <!-- Card User -->
             <div class="col-md-3">
