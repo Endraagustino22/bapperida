@@ -46,7 +46,7 @@
             </div>
 
 
-            {{-- <div class="col-md-4 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="card h-100">
                     <div class="card-body">
                         <h4 class="card-title">Pendaftaran KKN</h4>
@@ -59,21 +59,21 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
-
-
-            <div class="text-center mt-4">
-                @guest
-                    <a href="{{ route('login') }}" class="btn btn-outline-primary">Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-outline-success">Register</a>
-                @else
-                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn btn-outline-danger">Logout</button>
-                    </form>
-                @endguest
-            </div>
         </div>
+
+
+        <div class="text-center mt-4">
+            @guest
+                <a href="{{ route('login') }}" class="btn btn-outline-primary">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-outline-success">Register</a>
+            @else
+                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-danger">Logout</button>
+                </form>
+            @endguest
+        </div>
+    </div>
 
 </body>
 
