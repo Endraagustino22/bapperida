@@ -47,27 +47,37 @@
                 </div>
             </div>
 
-            {{-- <!-- Card KKN -->
-            <div class="col-md-3">
-                <div class="card text-bg-warning h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Data KKN</h5>
-                        <p class="card-text">Total Pendaftar: <strong>{{ $totalKkn }}</strong></p>
-                        <a href="{{ route('admin.kkn.index') }}" class="btn btn-light btn-sm">Lihat Data</a>
-                    </div>
-                </div>
-            </div> --}}
-
-            <!-- Card User -->
-            <div class="col-md-3">
-                <div class="card text-bg-dark h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Manajemen User</h5>
-                        <p class="card-text">Total Users: <strong>{{ $totalUsers }}</strong></p>
-                        <a href="{{ route('admin.users.index') }}" class="btn btn-light btn-sm">Kelola User</a>
+            {{-- card KKN --}}
+            <div class="col-md-4 col-lg-3">
+                <div class="card border-0 shadow-sm h-100 rounded-4">
+                    <div class="card-body text-center py-4">
+                        <div class="bg-success bg-opacity-10 text-success rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width:60px; height:60px;">
+                            <i class="bi bi-journal-text fs-4"></i>
+                        </div>
+                        <h6 class="fw-semibold mb-1">Data KKN</h6>
+                        <p class="text-muted small mb-2">Total Pendaftar</p>
+                        <h4 class="fw-bold">{{ $totalKkn }}</h4>
+                        <a href="{{ route('admin.kkn.index') }}" class="btn btn-outline-success btn-sm rounded-pill mt-2">Lihat Data</a>
                     </div>
                 </div>
             </div>
+
+
+            {{-- card User --}}
+            <div class="col-md-4 col-lg-3">
+                <div class="card border-0 shadow-sm h-100 rounded-4">
+                    <div class="card-body text-center py-4">
+                        <div class="bg-success bg-opacity-10 text-success rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width:60px; height:60px;">
+                            <i class="bi bi-journal-text fs-4"></i>
+                        </div>
+                        <h6 class="fw-semibold mb-1">Manajemen User</h6>
+                        <p class="text-muted small mb-2">Total Pendaftar</p>
+                        <h4 class="fw-bold">{{ $totalUsers }}</h4>
+                        <a href="{{ route('admin.users.index') }}" class="btn btn-outline-success btn-sm rounded-pill mt-2">Lihat Data</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         {{-- Ringkasan terbaru --}}
